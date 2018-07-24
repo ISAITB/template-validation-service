@@ -19,9 +19,9 @@ The following prerequisites are required:
 
 # Building and running
 
-1. Build using `mvnw clean package`.
+1. Build using `mvn clean package`.
 2. Once built you can run the application in two ways:  
-  a. With maven: `mvnw spring-boot:run`.  
+  a. With maven: `mvn spring-boot:run`.  
   b. Standalone: `java -jar .\target\${artifactId}-VERSION.jar`.
 3. The service's WSDL file is accessible at http://localhost:8080/services/validation?WSDL.
 
@@ -56,6 +56,6 @@ as needed in the commands or the `pom.xml` file.
 
 ### Running the Docker container
 
-Assuming an image name of `local/${artifactId}`, it can be ran using ``docker --name ${artifactId} -p 8080:8080 -d local/${artifactId}``. 
+Assuming an image name of `local/${artifactId}`, it can be ran using `docker --name ${artifactId} -p 8080:8080 -d local/${artifactId}`. 
 
 The WSDL file can now be accessed at http://DOCKER_MACHINE:8080/services/validation?WSDL. 

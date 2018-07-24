@@ -47,7 +47,7 @@ public class ValidationServiceImpl implements ValidationService {
     /**
      * The purpose of the getModuleDefinition call is to inform its caller on how the service is supposed to be called.
      *
-     * In this case its main puspose is to define the expected input parameters that are expected:
+     * In this case its main purpose is to define the input parameters that are expected:
      * <ul>
      *     <li>The required input text (string).</li>
      *     <li>The required expected text (string).</li>
@@ -270,6 +270,7 @@ public class ValidationServiceImpl implements ValidationService {
         AnyContent input = new AnyContent();
         input.setName(name);
         input.setValue(value);
+        input.setType("string");
         input.setEmbeddingMethod(embeddingMethod);
         return input;
     }

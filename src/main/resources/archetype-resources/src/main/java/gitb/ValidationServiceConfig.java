@@ -31,6 +31,7 @@ public class ValidationServiceConfig {
     public Endpoint validationService() {
         EndpointImpl endpoint = new EndpointImpl(cxfBus, validationServiceImplementation);
         endpoint.setServiceName(new QName("http://www.gitb.com/vs/v1/", "ValidationService"));
+        endpoint.setEndpointName(new QName("http://www.gitb.com/vs/v1/", "ValidationServicePort"));
         endpoint.publish("/validation");
         return endpoint;
     }
