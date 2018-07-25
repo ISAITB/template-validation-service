@@ -7,6 +7,8 @@ import com.gitb.vs.*;
 import com.gitb.vs.Void;
 import ${package}.validation.ValidationResult;
 import ${package}.validation.Validator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -25,6 +27,9 @@ import java.util.List;
 @Component
 public class ValidationServiceImpl implements ValidationService {
 
+    /** Logger. **/
+    private static final Logger LOG = LoggerFactory.getLogger(ValidationServiceImpl.class);
+
     /** The name of the input parameter for the text to test. */
     public static final String INPUT__TEXT_TO_CHECK = "text";
     /** The name of the input parameter for the expected text. */
@@ -32,11 +37,11 @@ public class ValidationServiceImpl implements ValidationService {
     /** The name of the input parameter to determine whether a mismatch is an error or a warning. */
     public static final String INPUT__MISMATCH_IS_ERROR = "mismatchIsError";
 
-    @Value("${validator.id}")
-    private String validatorId;
+    @Value("${service.id}")
+    private String serviceId;
 
-    @Value("${validator.version}")
-    private String validatorVersion;
+    @Value("${service.version}")
+    private String serviceVersion;
 
     @Autowired
     private ObjectFactory objectFactory;
@@ -61,11 +66,11 @@ public class ValidationServiceImpl implements ValidationService {
     public GetModuleDefinitionResponse getModuleDefinition(Void parameters) {
         GetModuleDefinitionResponse response = new GetModuleDefinitionResponse();
         response.setModule(new ValidationModule());
-        response.getModule().setId(validatorId);
+        response.getModule().setId(serviceId);
         response.getModule().setOperation("V");
         response.getModule().setMetadata(new Metadata());
         response.getModule().getMetadata().setName(response.getModule().getId());
-        response.getModule().getMetadata().setVersion(validatorVersion);
+        response.getModule().getMetadata().setVersion(serviceVersion);
         response.getModule().setInputs(new TypedParameters());
         response.getModule().getInputs().getParam().add(createParameter(INPUT__TEXT_TO_CHECK, "string", UsageEnumeration.R, ConfigurationType.SIMPLE, "The text to check."));
         response.getModule().getInputs().getParam().add(createParameter(INPUT__EXPECTED_TEXT, "string", UsageEnumeration.R, ConfigurationType.SIMPLE, "The expected value for the provided text."));
@@ -213,6 +218,7 @@ public class ValidationServiceImpl implements ValidationService {
         } else {
             report.setResult(TestResultType.FAILURE);
         }
+        LOG.info("Completed validation with result {}. Resulted in {} error(s), {} warning(s) and {} information message(s).", report.getResult(), errors, warnings, infos);
         return report;
     }
 
