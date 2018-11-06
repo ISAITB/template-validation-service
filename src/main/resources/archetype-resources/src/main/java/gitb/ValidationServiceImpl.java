@@ -1,3 +1,4 @@
+#set($dollar = '$')
 package ${package}.gitb;
 
 import com.gitb.core.*;
@@ -37,10 +38,10 @@ public class ValidationServiceImpl implements ValidationService {
     /** The name of the input parameter to determine whether a mismatch is an error or a warning. */
     public static final String INPUT__MISMATCH_IS_ERROR = "mismatchIsError";
 
-    @Value("${service.id}")
+    @Value("${dollar}{service.id}")
     private String serviceId;
 
-    @Value("${service.version}")
+    @Value("${dollar}{service.version}")
     private String serviceVersion;
 
     @Autowired
