@@ -14,7 +14,7 @@
     <version>${version}</version>
     <properties>
         <!-- Dependency and plugin versions. -->
-        <com.gitb.version>1.6.0</com.gitb.version>
+        <com.gitb.version>1.6.1</com.gitb.version>
         <org.apache.cxf.version>3.3.1</org.apache.cxf.version>
         <com.spotify.dockerfile-maven-plugin.version>1.4.10</com.spotify.dockerfile-maven-plugin.version>
         <!-- Other properties. -->
