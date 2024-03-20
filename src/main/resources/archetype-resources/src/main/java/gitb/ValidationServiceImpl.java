@@ -60,6 +60,14 @@ public class ValidationServiceImpl implements ValidationService {
      *     <li>The optional flag to determine if a mismatch is an error (boolean).</li>
      * </ul>
      *
+     * Note that defining the implementation of this service is optional. If the service is not going to be published
+     * for third parties to use in other test bed instances, you can simple define an empty implementation as follows:
+     * <pre>
+     * public GetModuleDefinitionResponse getModuleDefinition(Void parameters) {
+     *     return new GetModuleDefinitionResponse();
+     * }
+     * </pre>
+     *
      * @param parameters No parameters are expected.
      * @return The response.
      */
